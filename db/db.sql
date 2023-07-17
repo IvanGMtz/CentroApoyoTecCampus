@@ -44,3 +44,16 @@ CREATE TABLE incidencias (
     FOREIGN KEY (area_review_id) REFERENCES areas_review(id),
     FOREIGN KEY (trainer_id) REFERENCES trainers(id)
 );
+
+INSERT INTO areas_training (nombre, computadores, teclados, mouse, diademas)
+VALUES
+    ('Apolo', 25, 25, 25, 25),
+    ('Artemis', 25, 25, 25, 25),
+    ('Sputnik', 25, 25, 25, 25),
+    ('Skylab', 25, 25, 25, 25);
+
+
+INSERT INTO areas_review (nombre, computadores, teclados, mouse, diademas)
+VALUES
+    ('Corvus', 25, 25, 25, 25),
+    ('Endor', 25, 25, 25, 25);
