@@ -1,9 +1,11 @@
 import { Router } from "express";
-import con from "../server/connection.js"
+import con from "../server/connection.js";
+import appValidate from "../middleware/ValidateIncidencia.js";
+import 'reflect-metadata';
 const appIncidencias = Router();
 
 
-appIncidencias.post("/", (req, res) => {
+appIncidencias.post("/", appValidate, (req, res) => {
     con.query(
         /*sql*/ `INSERT INTO incidencias SET ?`,
         req.body,
