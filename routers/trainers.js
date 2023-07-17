@@ -1,9 +1,11 @@
 import { Router } from "express";
-import con from "../server/connection.js"
+import con from "../server/connection.js";
+import appValidate from "../middleware/ValidateTrainer.js";
+import 'reflect-metadata';
 const appTrainer = Router();
 
 
-appTrainer.post("/", (req, res) => {
+appTrainer.post("/", appValidate, (req, res) => {
     con.query(
         /*sql*/ `INSERT INTO trainers SET ?`,
         req.body,
@@ -29,7 +31,7 @@ appTrainer.get("/", (req, res) => {
     );
 })
 
-appTrainer.put("/:id", (req, res) => {
+appTrainer.put("/:id", appValidate, (req, res) => {
     con.query(
         /*sql*/ `UPDATE trainers SET ? WHERE id= ?`,
         [req.body, req.params.id],
