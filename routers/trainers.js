@@ -1,22 +1,7 @@
 import { Router } from "express";
-import mysql from "mysql2";
+import con from "../server/connection.js"
 const appTrainer = Router();
-let con = undefined;
 
-appTrainer.use((req, res, next)=>{
-    try {
-        con = mysql.createPool({
-            host: "127.0.0.1",
-            user: "root",
-            password: "123456",
-            database: "centroapoyocampus",
-            port: 3306
-    });
-    next();        
-    } catch (error) {
-        res.status(500).send('Conexion pailas papá')
-    }
-})
 
 appTrainer.post("/", (req, res) => {
     con.query(
