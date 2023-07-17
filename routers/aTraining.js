@@ -1,9 +1,10 @@
 import { Router } from "express";
-import con from "../server/connection.js"
+import con from "../server/connection.js";
+import appValidate from "../middleware/ValidateAreas.js";
 const appTraining = Router();
 
 
-appTraining.post("/", (req, res) => {
+appTraining.post("/", appValidate, (req, res) => {
     const { nombre, computadores, teclados, mouse, diademas } = req.body;
     con.query(
       /*sql*/ `SELECT * FROM areas_training WHERE nombre = ?`,
@@ -74,7 +75,7 @@ appTraining.get("/", (req, res) => {
     );
 })
 
-appTraining.put("/:id", (req, res) => {
+appTraining.put("/:id", appValidate, (req, res) => {
     con.query(
         /*sql*/ `UPDATE areas_training SET ? WHERE id= ?`,
         [req.body, req.params.id],
